@@ -6,12 +6,14 @@ import TimeSelector from './datetime_picker/time_selector.jsx';
 class DateTimePicker extends React.Component {
   constructor() {
     super();
-    this.state = {calendar: []}
+    this.state = {
+      selectedDate: new Date(),
+      calendar: []
+    }
   }
   updateCalendar() {
     var calendar = [];
-    var now = new Date();
-    var selectedDate = this.props.selectedDate;
+    var selectedDate = this.state.selectedDate;
     var year = selectedDate.getFullYear(),
         month = selectedDate.getMonth(),
         date = selectedDate.getDate(),
@@ -31,14 +33,30 @@ class DateTimePicker extends React.Component {
 
     this.setState({calendar: calendar});
   }
+  setSelectedDate(date) {
+    this.setState({selectedDate: date}, function() {
+      this.updateCalendar();
+    });
+  }
+  changeMonth(step) {
+    let selectedDate = this.state.selectedDate;
+    let date = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + step, selectedDate.getDate());
+    this.setSelectedDate(date);
+  }
+  prevMonth() {
+    this.changeMonth(-1);
+  }
+  nextMonth() {
+    this.changeMonth(1);
+  }
   componentWillMount() {
     this.updateCalendar();
   }
   render() {
     return (
       <div className="DateTimePicker">
-        <DateTimeBar selectedDate={this.props.selectedDate} />
-        <DateSelector selectedDate={this.props.selectedDate} calendar={this.state.calendar} />
+        <DateTimeBar selectedDate={this.state.selectedDate} prevMonth={this.prevMonth.bind(this)} nextMonth={this.nextMonth.bind(this)} />
+        <DateSelector selectedDate={this.state.selectedDate} calendar={this.state.calendar} />
         <TimeSelector />
       </div>
     );
