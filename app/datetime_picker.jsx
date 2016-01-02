@@ -1,7 +1,9 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import DateTimeBar from './datetime_picker/datetime_bar.jsx';
 import DateSelector from './datetime_picker/date_selector.jsx';
 import TimeSelector from './datetime_picker/time_selector.jsx';
+import YearSelector from './datetime_picker/year_selector.jsx';
 
 class DateTimePicker extends React.Component {
   constructor() {
@@ -38,10 +40,22 @@ class DateTimePicker extends React.Component {
       this.updateCalendar();
     });
   }
+  changeDate(year, month, date) {
+    let selectedDate = this.state.selectedDate;
+    let newDate = new Date(year, month, date, selectedDate.getHours(), selectedDate.getMinutes(), selectedDate.getSeconds());
+    this.setSelectedDate(newDate);
+  }
+  showYearSelector() {
+    const year = this.state.selectedDate.getFullYear();
+    ReactDOM.render(<YearSelector selectedYear={year} changeYear={this.changeYear.bind(this)} />, document.getElementById('year-selector'));
+  }
+  changeYear(year) {
+    let selectedDate = this.state.selectedDate;
+    let newDate = this.changeDate(year, selectedDate.getMonth(), selectedDate.getDate());
+  }
   changeMonth(step) {
     let selectedDate = this.state.selectedDate;
-    let date = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + step, selectedDate.getDate());
-    this.setSelectedDate(date);
+    this.changeDate(selectedDate.getFullYear(), selectedDate.getMonth() + step, selectedDate.getDate());
   }
   prevMonth() {
     this.changeMonth(-1);
@@ -55,8 +69,9 @@ class DateTimePicker extends React.Component {
   render() {
     return (
       <div className="DateTimePicker">
-        <DateTimeBar selectedDate={this.state.selectedDate} prevMonth={this.prevMonth.bind(this)} nextMonth={this.nextMonth.bind(this)} />
+        <DateTimeBar selectedDate={this.state.selectedDate} prevMonth={this.prevMonth.bind(this)} nextMonth={this.nextMonth.bind(this)} showYearSelector={this.showYearSelector.bind(this)} />
         <DateSelector selectedDate={this.state.selectedDate} calendar={this.state.calendar} />
+        <div id='year-selector'></div>
         <TimeSelector />
       </div>
     );
