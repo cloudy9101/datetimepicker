@@ -63,6 +63,17 @@ class DateTimePicker extends React.Component {
   nextMonth() {
     this.changeMonth(1);
   }
+  changeTime(hour, minute) {
+    let selectedDate = this.state.selectedDate;
+    let newDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), hour, minute);
+    this.setSelectedDate(newDate);
+  }
+  changeHour(hour) {
+    this.changeTime(hour, this.state.selectedDate.getMinutes());
+  }
+  changeMinute(minute) {
+    this.changeTime(this.state.selectedDate.getHours(), minute);
+  }
   componentWillMount() {
     this.updateCalendar();
   }
@@ -72,7 +83,7 @@ class DateTimePicker extends React.Component {
         <DateTimeBar selectedDate={this.state.selectedDate} prevMonth={this.prevMonth.bind(this)} nextMonth={this.nextMonth.bind(this)} showYearSelector={this.showYearSelector.bind(this)} />
         <DateSelector selectedDate={this.state.selectedDate} calendar={this.state.calendar} />
         <div id='year-selector'></div>
-        <TimeSelector />
+        <TimeSelector changeHour={this.changeHour.bind(this)} changeMinute={this.changeMinute.bind(this)} />
       </div>
     );
   }
