@@ -9,7 +9,7 @@ class DateRow extends React.Component {
 
     keys.forEach(function(key) {
       let date = typeof weekdays[key] !== 'undefined' ? weekdays[key].getDate() : '';
-      rows.push(<td key={key} onClick={$this.props.selectDate.bind($this, weekdays[key])}>{date}</td>); 
+      rows.push(<td className="date" key={key} onClick={$this.props.selectDate.bind($this, weekdays[key])}>{date}</td>); 
     });
 
     return (

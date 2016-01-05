@@ -21,6 +21,9 @@ var config = {
     }, {
       test: /\.woff$/,
       loader: 'url?limit=100000' 
+    }, {
+      test: /\.css$/,
+      loader: 'style!css'
     }],
   }
 }
