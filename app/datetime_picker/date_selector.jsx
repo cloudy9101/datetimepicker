@@ -3,18 +3,19 @@ import DateRow from './date_row.jsx';
 
 class DateSelector extends React.Component {
   render() {
-    var keys = [0, 1, 2, 3, 4, 5, 6];
-    var weekdays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-    var ths = [];
+    const keys = [0, 1, 2, 3, 4, 5, 6];
+    const weekdays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+    let ths = [];
 
     keys.forEach(function(key) {
       ths.push(<th key={key}>{weekdays[key]}</th>);
     });
 
-    var calendar = this.props.calendar;
-    var rows = [];
+    const calendar = this.props.calendar;
+    let rows = [];
+    const $this = this;
     calendar.forEach(function(ro) {
-      rows.push(<DateRow weekdays={ro} />);
+      rows.push(<DateRow weekdays={ro} selectDate={$this.props.selectDate} />);
     });
     
     return (
