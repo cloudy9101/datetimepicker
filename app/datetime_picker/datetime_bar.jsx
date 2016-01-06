@@ -7,14 +7,14 @@ class DateTimeBar extends React.Component {
     const weekdays = ['Sun', 'Mon', 'Tue', 'Web', 'Thu', 'Fri', 'Sat']
     return (
       <div className="DateTimeBar">
-        <div className="bar">
-          <span onClick={this.props.prevMonth}><a href='javascript:;'>&#60;</a></span>
+        <div className="prev-month" onClick={this.props.prevMonth}><a href='javascript:;'>&#60;</a></div>
+        <div className="next-month" onClick={this.props.nextMonth}><a href='javascript:;'>&#62;</a></div>
+        <div className="time-bar">
           <span> {weekdays[date.getDay()]}</span>
           <span> {months[date.getMonth()]}</span>
           <span> {date.getDate()}</span>
           <span onClick={this.props.showYearSelector}> {date.getFullYear()}</span>
           <span> {date.getHours()}:{date.getMinutes()}</span>
-          <span onClick={this.props.nextMonth}><a href='javascript:;'>&#62;</a></span>
         </div>
       </div>
     );

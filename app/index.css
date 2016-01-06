@@ -3,27 +3,40 @@ body
   background-color: #ececec;
 }
 
+a {
+  text-decoration: none;
+  color: #fafafa;
+}
+
 .DateTimePicker {
+  width: 220px;
   position: relative;
   float: left;
-  width: 220px;
   background-color: #fafafa;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .DateTimeBar {
+  padding-top: 10px;
+  height: 30px;
+  padding-bottom: -50%;
   background-color: rgba(0, 188, 212, 1);
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
-.DateTimeBar .bar {
-  margin-left: auto;
-  margin-right: auto;
+.DateTimeBar .time-bar {
+  width: 100%;
+  text-align: center;
 }
 
-.DateTimeBar span {
-  margin-left: auto;
-  margin-right: auto;
+.DateTimeBar .prev-month {
+  float: left;
+  width: 10px;
+}
+
+.DateTimeBar .next-month {
+  float: right;
+  width: 10px;
 }
 
 .DateSelector table {
