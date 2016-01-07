@@ -7,8 +7,8 @@ class DateTimeBar extends React.Component {
     const weekdays = ['Sun', 'Mon', 'Tue', 'Web', 'Thu', 'Fri', 'Sat']
     return (
       <div className="DateTimeBar">
-        <div className="prev-month" onClick={this.props.prevMonth}><a href='javascript:;'>&#60;</a></div>
-        <div className="next-month" onClick={this.props.nextMonth}><a href='javascript:;'>&#62;</a></div>
+        <div className="prev-month" onClick={this.props.prevMonth}><a href='javascript:;'><i className="fa fa-chevron-left"></i></a></div>
+        <div className="next-month" onClick={this.props.nextMonth}><a href='javascript:;'><i className="fa fa-chevron-right"></i></a></div>
         <div className="time-bar">
           <span> {weekdays[date.getDay()]}</span>
           <span> {months[date.getMonth()]}</span>
