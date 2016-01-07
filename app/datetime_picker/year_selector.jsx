@@ -34,14 +34,14 @@ class YearSelector extends React.Component {
     const $this = this;
     let years = [];
     this.state.years.forEach(function(year) {
-      years.push(<li onClick={$this.setYear.bind($this, year)}>{year}</li>);
+years.push(<div onClick={$this.setYear.bind($this, year)}><a href='javascript:;'>{year}</a></div>);
     });
     return (
-      <ul>
-        <li onClick={this.prevYear.bind(this)}><a href='javascript:;'>prev</a></li>
+      <div className='YearSelector'>
+        <div onClick={this.prevYear.bind(this)}><a href='javascript:;'><i className='fa fa-chevron-up'></i></a></div>
         {years}
-        <li onClick={this.nextYear.bind(this)}><a href='javascript:;'>next</a></li>
-      </ul>
+        <div onClick={this.nextYear.bind(this)}><a href='javascript:;'><i className='fa fa-chevron-down'></i></a></div>
+      </div>
     );
   }
 }

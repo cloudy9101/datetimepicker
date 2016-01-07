@@ -13,8 +13,8 @@ class DateTimeBar extends React.Component {
           <span> {weekdays[date.getDay()]}</span>
           <span> {months[date.getMonth()]}</span>
           <span> {date.getDate()}</span>
-          <span onClick={this.props.showYearSelector}> {date.getFullYear()}</span>
-          <span> {date.getHours()}:{date.getMinutes()}</span>
+          <span onClick={this.props.showYearSelector}> <a href='javascript:;'>{date.getFullYear()}</a></span>
+          <span onClick={this.props.showTimeSelector}> <a href='javascript:;'>{date.getHours()}:{date.getMinutes()}</a></span>
         </div>
       </div>
     );

@@ -10,7 +10,10 @@ class DateTimePicker extends React.Component {
     super();
     this.state = {
       selectedDate: new Date(),
-      calendar: []
+      calendar: [],
+      displayCalendar: true,
+      displayYearSelector: false,
+      displayTimeSelector: false
     }
   }
   updateCalendar() {
@@ -32,7 +35,6 @@ class DateTimePicker extends React.Component {
       }
       if(row !== new Array(7)){calendar.push(row)}
     }
-    console.log(calendar);
     this.setState({calendar: calendar});
   }
   setSelectedDate(date) {
@@ -46,12 +48,12 @@ class DateTimePicker extends React.Component {
     this.setSelectedDate(newDate);
   }
   showYearSelector() {
-    const year = this.state.selectedDate.getFullYear();
-    ReactDOM.render(<YearSelector selectedYear={year} changeYear={this.changeYear.bind(this)} />, document.getElementById('year-selector'));
+    this.setState({displayYearSelector: true, displayCalendar: false, displayTimeSelector: false});
   }
   changeYear(year) {
     let selectedDate = this.state.selectedDate;
     let newDate = this.changeDate(year, selectedDate.getMonth(), selectedDate.getDate());
+    this.setState({displayYearSelector: false, displayCalendar: true, displayTimeSelector: false});
   }
   changeMonth(step) {
     let selectedDate = this.state.selectedDate;
@@ -63,10 +65,14 @@ class DateTimePicker extends React.Component {
   nextMonth() {
     this.changeMonth(1);
   }
+  showTimeSelector() {
+    this.setState({displayTimeSelector: true, displayCalendar: false, displayYearSelector: false});
+  }
   changeTime(hour, minute) {
     let selectedDate = this.state.selectedDate;
     let newDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), hour, minute);
     this.setSelectedDate(newDate);
+    this.setState({displayTimeSelector: false, displayCalendar: true, displayYearSelector: false});
   }
   changeHour(hour) {
     this.changeTime(hour, this.state.selectedDate.getMinutes());
@@ -83,10 +89,10 @@ class DateTimePicker extends React.Component {
   render() {
     return (
       <div className="DateTimePicker">
-        <DateTimeBar selectedDate={this.state.selectedDate} prevMonth={this.prevMonth.bind(this)} nextMonth={this.nextMonth.bind(this)} showYearSelector={this.showYearSelector.bind(this)} />
-        <DateSelector selectedDate={this.state.selectedDate} calendar={this.state.calendar} selectDate={this.selectDate.bind(this)}/>
-        <div id='year-selector'></div>
-        <TimeSelector changeHour={this.changeHour.bind(this)} changeMinute={this.changeMinute.bind(this)} />
+        <DateTimeBar selectedDate={this.state.selectedDate} prevMonth={this.prevMonth.bind(this)} nextMonth={this.nextMonth.bind(this)} showYearSelector={this.showYearSelector.bind(this)} showTimeSelector={this.showTimeSelector.bind(this)} />
+        {this.state.displayCalendar ? <DateSelector selectedDate={this.state.selectedDate} calendar={this.state.calendar} selectDate={this.selectDate.bind(this)}/> : null}
+        {this.state.displayYearSelector ? <YearSelector selectedYear={this.state.selectedDate.getFullYear()} changeYear={this.changeYear.bind(this)} /> : null}
+        {this.state.displayTimeSelector ? <TimeSelector changeHour={this.changeHour.bind(this)} changeMinute={this.changeMinute.bind(this)} /> : null}
       </div>
     );
   }

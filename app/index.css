@@ -5,7 +5,11 @@ body
 
 a {
   text-decoration: none;
-  color: #fafafa;
+  color: #000000;
+}
+
+li {
+  list-style-type: none;
 }
 
 .DateTimePicker {
@@ -14,6 +18,7 @@ a {
   float: left;
   background-color: #fafafa;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  text-align: center;
 }
 
 .DateTimeBar {
@@ -58,10 +63,35 @@ a {
   border-radius: 25px;
 }
 
-#year-selector {
-  display: none;
+.YearSelector {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.YearSelector div {
+  padding-top: 5px;
 }
 
 .TimeSelector {
-  display: none;
+  margin-left: auto;
+  margin-right: auto;
+  height: 220px;
+}
+
+.TimeSelector div {
+  padding-top: 5px;
+}
+
+.TimeSelector .hour {
+  width: 110px;
+  height: 100%;
+  float: left;
+  overflow-y: auto;
+}
+
+.TimeSelector .minute {
+  width: 110px;
+  height: 100%;
+  float: left;
+  overflow-y: auto;
 }

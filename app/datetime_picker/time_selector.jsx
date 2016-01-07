@@ -8,19 +8,21 @@ class TimeSelector extends React.Component {
     let mRows = [];
     let $this = this;
     hours.forEach(function(i){
-      hRows.push(<li key={i} onClick={$this.props.changeHour.bind($this, i)}><a href='javascript:;'>{i}</a></li>);
+      hRows.push(<div key={i} onClick={$this.props.changeHour.bind($this, i)}><a href='javascript:;'>{i}</a></div>);
     });
     minutes.forEach(function(i){
-      mRows.push(<li key={i} onClick={$this.props.changeMinute.bind($this, i)}><a href='javascript:;'>{i}</a></li>);
+      mRows.push(<div key={i} onClick={$this.props.changeMinute.bind($this, i)}><a href='javascript:;'>{i}</a></div>);
     });
     return (
       <div className="TimeSelector">
-        <ul>
+        <div className="hour">
+          <div>Hour</div>
           {hRows}
-        </ul>
-        <ul>
+        </div>
+        <div className="minute">
+          <div>Minute</div>
           {mRows}
-        </ul>
+        </div>
       </div>
     );
   }
