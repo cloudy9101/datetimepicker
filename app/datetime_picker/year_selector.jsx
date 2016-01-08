@@ -38,9 +38,9 @@ years.push(<div onClick={$this.setYear.bind($this, year)}><a href='javascript:;'
     });
     return (
       <div className='YearSelector'>
-        <div onClick={this.prevYear.bind(this)}><a href='javascript:;'><i className='fa fa-chevron-up'></i></a></div>
+        <div onClick={this.prevYear.bind(this)}><a href='javascript:;'><i className='material-icons'>expand_less</i></a></div>
         {years}
-        <div onClick={this.nextYear.bind(this)}><a href='javascript:;'><i className='fa fa-chevron-down'></i></a></div>
+        <div onClick={this.nextYear.bind(this)}><a href='javascript:;'><i className='material-icons'>expand_more</i></a></div>
       </div>
     );
   }

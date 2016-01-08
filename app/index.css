@@ -36,14 +36,10 @@ li {
 
 .DateTimeBar .prev-month {
   float: left;
-  width: 10px;
-  margin-left: 5px;
 }
 
 .DateTimeBar .next-month {
   float: right;
-  width: 10px;
-  margin-right: 5px;
 }
 
 .DateSelector table {
