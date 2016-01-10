@@ -4,6 +4,7 @@ import DateTimeBar from './datetime_picker/datetime_bar.jsx';
 import DateSelector from './datetime_picker/date_selector.jsx';
 import TimeSelector from './datetime_picker/time_selector.jsx';
 import YearSelector from './datetime_picker/year_selector.jsx';
+import Footer from './datetime_picker/footer.jsx';
 
 class DateTimePicker extends React.Component {
   constructor() {
@@ -86,6 +87,12 @@ class DateTimePicker extends React.Component {
   selectDate(date) {
     this.changeDate(date.getFullYear(), date.getMonth(), date.getDate());
   }
+  ok() {
+
+  }
+  cancel() {
+
+  }
   render() {
     return (
       <div className="DateTimePicker">
@@ -93,6 +100,7 @@ class DateTimePicker extends React.Component {
         {this.state.displayCalendar ? <DateSelector selectedDate={this.state.selectedDate} calendar={this.state.calendar} selectDate={this.selectDate.bind(this)}/> : null}
         {this.state.displayYearSelector ? <YearSelector selectedYear={this.state.selectedDate.getFullYear()} changeYear={this.changeYear.bind(this)} /> : null}
         {this.state.displayTimeSelector ? <TimeSelector changeHour={this.changeHour.bind(this)} changeMinute={this.changeMinute.bind(this)} /> : null}
+        <Footer confirm={this.ok.bind(this)} cancel={this.cancel.bind(this)} />
       </div>
     );
   }
